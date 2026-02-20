@@ -40,6 +40,9 @@ async def clock_loop():
 if __name__ == "__main__":
     # Veb-serverni alohida oqimda ishga tushirish
     Thread(target=run_web).start() 
-    # Soat siklini ishga tushirish
-    asyncio.run(clock_loop())
+    
+    # Yangi event loop yaratish (Python 3.11+ uchun xavfsiz yo'l)
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+    loop.run_until_complete(clock_loop())
     
